@@ -1,0 +1,215 @@
+html, body {
+
+  font-family: oswald, Arial, Helvetica, sans-serif;
+  margin: 0%;
+  padding: 0%;
+}
+
+@font-face {
+  font-family: oswald;
+  src: url(./assets/Oswald-VariableFont_wght.ttf);
+}
+
+.auth-form {
+  width: 30vw;
+  margin-left: 35vw;
+  height: fit-content;
+  margin-top: 10vh;
+  padding: 1%;
+  border: 1px solid rgba(0, 0, 0, 0.25);
+  border-radius: 1% / 2%;
+}
+
+.auth-form form {
+  row-gap: 15px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.switch-auth-button {
+  cursor: pointer;
+}
+
+.navbar {
+  background-color: black;
+  width: 100vw;
+  height: 10vh;
+
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
+.navbar div {
+  width: 30%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.navbar h1 {
+  color: white;
+}
+
+.route-selection-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+
+  height: 90vh;
+}
+
+.route-selection {
+  background-color: black;
+  color: white;
+  height: 50%;
+  width: 15%;
+  margin-top: 20vh;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+
+  border: 1px solid white;
+  border-radius: 4%;
+
+  cursor: pointer;  
+  transition: all 0.5s;
+
+}
+
+.products-landing-container {
+  margin-top: 8vh;
+  justify-content: center;
+  display: flex;
+  flex-direction: row;
+  /* background-color: brown; */
+}
+.product-list-container {
+  width: 60%;
+  height: 70vh;
+  border: 1px solid black;
+  border-radius: 1%;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.product-list::-webkit-scrollbar {
+  /* display: none; */
+}
+
+.product-list {
+  list-style: none;
+  padding: 0%;
+  /* background-color: blanchedalmond; */
+  width: 80%;
+  overflow-y: auto;
+}
+
+.route-selection:hover {
+  /* background-color: rgba(0, 0, 0, 0.1); */
+  background-color: #C64033;
+  border-color: black;
+
+  
+
+}
+
+.route-selection svg {
+  transform: scale(4);
+  margin-bottom: 20%;
+}
+
+.product-list-item:hover {
+
+  background-color: black;
+  
+
+}
+
+.product-list-item {
+  transition: all .5s;
+  cursor: pointer;
+  text-align: center;
+  margin-top: 1%;
+  font-size: 3vmin;
+  margin-left: 25%;
+  background-color: #C64033;
+  border: 2px solid black;
+  border-radius: 1% / 10%;
+  color: white;
+  width: 50%;
+}
+
+.product-list-header {
+  width: 100%;
+  justify-content: space-evenly;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  column-gap: 10px;
+}
+.product-list-header h1 {
+  margin-bottom: 0%;
+
+}
+
+
+.product-details-page {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  height: 80vh;
+}
+
+.product-details-container {
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  margin-top: 2%;
+  border: 2px solid black;
+  border-radius: 1% / 2%;
+  height: 90%;
+  width: 80%;
+}
+
+.loading {
+  position: absolute;
+  top: 10%;
+  left: 50%;
+}
+
+.product-details-main{ 
+
+
+  height: 80%;
+  width: 90%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-evenly;
+
+}
+.product-details-main div {
+
+  width: 30%;
+  height: 100%;
+
+
+  border: 1px solid black;
+}
+
+.product-details-distributer-map {
+    
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+}
