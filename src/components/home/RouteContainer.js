@@ -7,6 +7,7 @@ import DistributorsLanding from '../distributors/DistributorsLanding'
 import HomePage from './HomePage'
 import NavBar from './NavBar'
 import ProductDetailsPage from '../products/ProductDetailsPage'
+import DistributorsProductManagement from '../distributors/DistributorsProductManagement'
 
 const RouteContainer = () => {
     return (
@@ -18,6 +19,8 @@ const RouteContainer = () => {
           <Route path='/products/:id' element={ <ProductDetailsPage /> } />
           <Route path='/accounts' element={ <AccountsLanding /> } />
           <Route path='/distributors' element={ <DistributorsLanding /> } />
+          <Route path='/distributors/:id/manage' element={ <DistributorsProductManagement /> } />
+          <Route path='/distributors/:id/details' element={ <DistributorsLanding /> } />
           <Route path='/' element={ <HomePage /> } />
         </Routes>
         </>

@@ -1,4 +1,13 @@
-html, body {
+
+
+.unassigned-product-list {
+
+
+
+
+
+
+}html, body {
 
   font-family: oswald, Arial, Helvetica, sans-serif;
   margin: 0%;
@@ -212,4 +221,111 @@ html, body {
   flex-direction: column;
   align-items: center;
 
+}
+
+.sub-section-landing-page {
+  display: flex;
+  flex-direction: row;
+
+  justify-content: space-evenly;
+
+  width: 100%;
+  height: 90vh;
+}
+
+
+.distributor-child {
+
+  width: 20vw;
+  height: 60%;
+  margin-top: 5%;
+
+  color: #C64033;
+  border-radius: 2% / 2%;
+  border: 1px solid black;
+  background-color: black;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+
+  align-items: center;
+  row-gap: 8%;
+
+
+  
+}
+
+
+.white-title {
+  color: white;
+  font-size: 4vmin;
+
+}
+
+.unassigned-product-warning {
+
+  padding: 0%;
+  margin: 0%;
+  color: white;
+  font-size: 3.5vmin;
+
+
+}
+
+.distributer-product-container {
+  margin-top: 5%;
+  height: 70%;
+  width: 80%;
+  background-color: black;
+  border: 1px solid black;
+  border-radius: 1% / 2%;
+
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.distributer-product-container-sub-container {
+  background-color: white;
+  width: 35%;
+  height: 80%;
+
+  border: 1px solid white;
+  border-radius: 2% / 2%;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+
+
+
+.unassigned-product-list {
+
+
+  list-style: none;
+  padding: 0%;
+  margin: 0%;
+  overflow-y: auto;
+  height: 100%;
+  width: 60%;
+
+}
+
+.unassigned-product-list-item {
+  text-align: center;
+  font-size: 2vmin;
+  transition: all .25s;
+  cursor: pointer;
+}
+.unassigned-product-list-item:hover {
+  background: black;
+  color: white;
+}
+
+.assignText {
+  /* font-weight: 00; */
 }
