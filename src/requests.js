@@ -74,3 +74,13 @@ export const getSpecificDistributor = async (id) => {
     const data = await response.json()
     return data
 }
+
+export const updateDistributerProduct = async (id, product_id) => {
+    let token = localStorage.getItem('jwt')
+    const method = "PATCH"
+    const headers = { "Content-Type": "application/json", "Authorization": `Bearer ${token}` }
+    const response = await fetch(`${baseURL}/distributer_products/${id}?product_id=${product_id}`, { method: method, headers: headers })
+    const data = await response.json()
+    return data
+}
+

@@ -327,5 +327,9 @@
 }
 
 .assignText {
-  /* font-weight: 00; */
+  width: 100%;
+  display: flex;
+  column-gap: 5%;
+  align-items: center;
+  justify-content: flex-start;
 }
