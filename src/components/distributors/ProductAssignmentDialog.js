@@ -16,7 +16,7 @@ export default function AlertDialog({ open, handleClose, selectedItem }) {
 
     const products = useSelector(state => state.products)
 
-
+    const dispatch = useDispatch()
     const [chosenProduct, setChosenProduct] = useState(null) 
 
     const [dropDownOpen, setDropDownOpen] = useState(false)
@@ -44,6 +44,7 @@ export default function AlertDialog({ open, handleClose, selectedItem }) {
         .then(data => {
             if (data) {
                 console.log(data)
+                dispatch({type: 'REMOVE_UNASSIGNED_PRODUCT', payload: data})
                 setChosenProduct({})
                 handleClose()
             }

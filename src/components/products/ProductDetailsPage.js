@@ -1,19 +1,27 @@
 import React, { useState, useEffect } from 'react'
-import { useParams } from 'react-router'
+import { useParams, useNavigate } from 'react-router'
 import { getSpecificProduct, getDistributors } from '../../requests'
 import { useDispatch } from 'react-redux'
 import { useSelector } from 'react-redux'
 import { CircularProgress } from '@mui/material'
 import DistributerProductMapSettings from './DistributerProductMapSettings'
+import SettingsIcon from '@mui/icons-material/Settings';
+import ProductNumbersCard from './ProductNumbersCard'
 
 const ProductDetailsPage = () => {
 
     const { id } = useParams()
+    const navigate = useNavigate()
     const dispatch = useDispatch()
 
     const [productLoaded, setProductLoaded] = useState(false)
     const product = useSelector(state => state.products.selectedProduct)
     const distributors = useSelector(state => state.distributors.distributors)
+
+
+    const redirectToManagementPage = () => {
+        navigate(`/products/${id}/manage`)
+    }
 
 
     useEffect(() => {
@@ -42,14 +50,18 @@ const ProductDetailsPage = () => {
         <div className='product-details-page'>
             {productLoaded ?
                 <div className='product-details-container'>
-                    <h2>
-                        {product.product_name}
-                    </h2>
+                    <div className='product-title-container'>
+                        <h2 className='new-product-title'>
+                            {product.product_name}
+                            <SettingsIcon onClick={redirectToManagementPage} sx={{fontSize: '2.5vmin'}} className='product-settings-icon' />
+                        </h2>
+                    </div>
                     <div className='product-details-main'>
-                        <div className='product-details-numbers'></div>
-                        <div className='product-details-accounts'></div>
-
-                        {/* <DistributerProductMapSettings /> */}
+                        <div className='product-details-numbers'>
+                            <ProductNumbersCard />
+                        </div>
+                        {/* <div className='product-details-accounts'></div> */}
+                        <DistributerProductMapSettings />
                     </div>
                 </div>
                 :
