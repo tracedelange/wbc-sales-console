@@ -48,6 +48,15 @@ export const getProducts = async () => {
     return data
 }
 
+export const createNewProduct = async (productName) => {
+    let token = localStorage.getItem('jwt')
+    const method = "POST"
+    const headers = { "Content-Type": "application/json", "Authorization": `Bearer ${token}` }
+    const response = await fetch(`${baseURL}/products?product_name=${productName}`, { method: method, headers: headers })
+    const data = await response.json()
+    return data
+}
+
 
 export const getSpecificProduct = async (id) => {
     let token = localStorage.getItem('jwt')

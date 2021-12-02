@@ -42,14 +42,14 @@ const ProductDetailsPage = () => {
         <div className='product-details-page'>
             {productLoaded ?
                 <div className='product-details-container'>
-                    <h2>
+                    <h2 className='new-product-title'>
                         {product.product_name}
                     </h2>
                     <div className='product-details-main'>
                         <div className='product-details-numbers'></div>
                         <div className='product-details-accounts'></div>
 
-                        {/* <DistributerProductMapSettings /> */}
+                        <DistributerProductMapSettings />
                     </div>
                 </div>
                 :
