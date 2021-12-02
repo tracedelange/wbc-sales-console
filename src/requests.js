@@ -57,6 +57,23 @@ export const createNewProduct = async (productName) => {
     return data
 }
 
+export const updateProduct = async (id, productName) => {
+    let token = localStorage.getItem('jwt')
+    const method = "PATCH"
+    const headers = { "Content-Type": "application/json", "Authorization": `Bearer ${token}` }
+    const response = await fetch(`${baseURL}/products/${id}?product_name=${productName}`, { method: method, headers: headers })
+    const data = await response.json()
+    return data
+}
+
+export const deleteProduct = async (id) => {
+    let token = localStorage.getItem('jwt')
+    const method = "DELETE"
+    const headers = { "Content-Type": "application/json", "Authorization": `Bearer ${token}` }
+    const response = await fetch(`${baseURL}/products/${id}`, { method: method, headers: headers })
+    return response
+}
+
 
 export const getSpecificProduct = async (id) => {
     let token = localStorage.getItem('jwt')

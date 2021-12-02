@@ -33,6 +33,7 @@ const DistributorsProductManagement = () => {
     
     const distributorData = useSelector(state => state.distributors)
 
+
     useEffect(() => {
         if (distributorData.distributors.length > 0) {
             const data = distributorData.distributors.find(item => item.id == id)
@@ -57,15 +58,15 @@ const DistributorsProductManagement = () => {
 
             {ready ?
                 <div className='distributer-product-container' >
+                    <div className='distributer-product-container-sub-container'>
+
+                    </div>
                     <ProductAssignmentDialog selectedItem={selectedItem} open={productAssignmentOpen} handleClose={handleClose} />
                     <div className='distributer-product-container-sub-container'>
                         <h2>Unassigned Products:</h2>
                         <ul className='unassigned-product-list'>
                             {unassignedProductArray}
                         </ul>
-
-                    </div>
-                    <div className='distributer-product-container-sub-container'>
 
                     </div>
 
