@@ -533,3 +533,35 @@
   flex-grow: 2;
   font-size: 2.5vmin;
 }
+
+
+
+.reports-form {
+
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center; 
+  row-gap: 10%;
+
+  font-size: larger;
+
+  height: 50%;
+  width: 25%;
+  margin-top: 5%;
+
+  border: 2px solid rgba(0, 0, 0, 0.75);
+  border-radius: 2%;
+
+
+
+
+}
+
+.landing-error-text {
+  margin-top: 2%;
+  font-size: 125%;
+  text-align: center;
+  color: rgba(0, 0, 0, 0.75);
+}
+

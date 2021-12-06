@@ -7,6 +7,7 @@ import { CircularProgress } from '@mui/material'
 import DistributerProductMapSettings from './DistributerProductMapSettings'
 import SettingsIcon from '@mui/icons-material/Settings';
 import ProductNumbersCard from './ProductNumbersCard'
+import ProductGraphContainer from './ProductGraphContainer'
 
 const ProductDetailsPage = () => {
 
@@ -60,7 +61,9 @@ const ProductDetailsPage = () => {
                         <div className='product-details-numbers'>
                             <ProductNumbersCard />
                         </div>
-                        {/* <div className='product-details-accounts'></div> */}
+                        <div className='product-details-accounts'>
+                            <ProductGraphContainer />
+                        </div>
                         <DistributerProductMapSettings />
                     </div>
                 </div>
