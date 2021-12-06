@@ -10,6 +10,8 @@ import ProductDetailsPage from '../products/ProductDetailsPage'
 import DistributorsProductManagement from '../distributors/DistributorsProductManagement'
 import ProductCreationPage from '../products/ProductCreationPage'
 import ProductManagementPage from '../products/ProductManagementPage'
+import ProductOrdersGraphPage from '../products/charts/ProductOrdersGraphPage'
+import ProductAccountsGraphPage from '../products/charts/ProductAccountsGraphPage'
 
 const RouteContainer = () => {
     return (
@@ -20,6 +22,8 @@ const RouteContainer = () => {
           <Route path='/products' element={ <ProductsLanding /> } />
           <Route path='/products/:id' element={ <ProductDetailsPage /> } />
           <Route path='/products/:id/manage' element={ <ProductManagementPage /> } />
+          <Route path='/products/:id/orders' element={ <ProductOrdersGraphPage /> } />
+          <Route path='/products/:id/accounts' element={ <ProductAccountsGraphPage /> } />
           <Route path='/products/new' element={ <ProductCreationPage /> } />
           <Route path='/accounts' element={ <AccountsLanding /> } />
           <Route path='/distributors' element={ <DistributorsLanding /> } />

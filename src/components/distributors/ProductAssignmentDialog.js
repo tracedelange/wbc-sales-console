@@ -43,7 +43,6 @@ export default function AlertDialog({ open, handleClose, selectedItem }) {
         updateDistributerProduct(selectedItem.id, chosenProduct.id)
         .then(data => {
             if (data) {
-                console.log(data)
                 dispatch({type: 'REMOVE_UNASSIGNED_PRODUCT', payload: data})
                 setChosenProduct({})
                 handleClose()

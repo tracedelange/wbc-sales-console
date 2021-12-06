@@ -110,3 +110,12 @@ export const updateDistributerProduct = async (id, product_id) => {
     return data
 }
 
+export const getGraphData = async (product_id) => {
+    let token = localStorage.getItem('jwt')
+    const method = "GET"
+    const headers = { "Content-Type": "application/json", "Authorization": `Bearer ${token}` }
+    const response = await fetch(`${baseURL}/graphs/${product_id}`, { method: method, headers: headers })
+    const data = await response.json()
+    return data
+}
+

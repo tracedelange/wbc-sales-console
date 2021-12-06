@@ -2,35 +2,64 @@ import React from 'react'
 import { useState } from 'react'
 import { submitReport } from '../../requests'
 import { Button } from '@mui/material'
+import ReportsForm from './ReportsForm'
+import { useDispatchDistributors } from '../../actions'
+
 
 
 const ReportsLanding = () => {
 
+
     const [selectedFile, setSelectedFile] = useState()
-    const [selectedDistributor, setSelectedDistributor] = useState(1)
+    const [selectedDistributor, setSelectedDistributor] = useState(null)
     const [fileSelected, setFileSelected] = useState(false)
+    const [distributor, setDistributor] = useState(1)
+    const [submitted, setSubmitted] = useState(false)
+    const [successMessage, setSuccessMessage] = useState('')
 
 
+    useDispatchDistributors()
+
+
+    const handleDistributorChange = (e, newValue) => {
+
+        console.log(newValue)
+        setSelectedDistributor(newValue)
+
+    }
 
     const handleSubmitReport = (e) => {
-        // console.log(selectedFile)
+        setSubmitted(true)
         submitReport(selectedFile, selectedDistributor)
-        .then(data => {
-            if (data){
-                console.log(data)
-            }
-        })
+            .then(data => {
+                if (data) {
+                    console.log(data)
+                    setSubmitted(false)
+                    if (data.processing_stats) {
+                        setSuccessMessage('Report successfully uploaded.')
+                    } else {
+                        setSuccessMessage('Looks like something went wrong.')
+                    }
+                }
+            })
     }
 
     const handleSelectedFile = (e) => {
         setSelectedFile(e.target.files[0])
     }
 
+    // handleSelectedFile, selectedDistributor, handleDistributorChange, handleSubmitReport
+
     return (
-        <div>
-            <h1>Reports Landing Page</h1>
-            <input type='file' name='report' onChange={handleSelectedFile} />
-            <Button variant='contained' onClick={handleSubmitReport} >Submit Report</Button>
+        <div className='sub-section-landing-page'>
+            <ReportsForm
+                successMessage={successMessage}
+                submitted={submitted}
+                handleSelectedFile={handleSelectedFile}
+                selectedDistributor={selectedDistributor}
+                handleDistributorChange={handleDistributorChange}
+                handleSubmitReport={handleSubmitReport}
+            />
         </div>
     )
 }

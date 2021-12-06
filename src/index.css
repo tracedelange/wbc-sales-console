@@ -321,6 +321,9 @@
   height: 100%;
   width: 60%;
 
+  border: 1px solid rgba(0, 0, 0, 0.25);
+  border-radius: 1% / 2%;
+
 }
 
 .unassigned-product-list-item {
@@ -406,6 +409,9 @@
 
   cursor: pointer;
 
+}
+.map-entry-distributor {
+  text-align: center;
 }
 
 
@@ -507,8 +513,9 @@
 
 .product-numbers-card > h1 {
   /* justify-self: f; */
+  /* justify-self: center; */
   text-align: center;
-  flex-shrink: 2;
+  flex-shrink: 3;
 }
 
 .product-numbers-card {
@@ -516,7 +523,7 @@
 
   /* background-color: #C64033; */
   width: 90%;
-  height: 90%;
+  height: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -530,6 +537,102 @@
   flex-direction: column;
   text-align: center;
   justify-content: center;
-  flex-grow: 2;
+  flex-grow: 4;
   font-size: 2.5vmin;
+}
+
+
+
+.reports-form {
+
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center; 
+  row-gap: 10%;
+
+  font-size: larger;
+
+  height: 50%;
+  width: 25%;
+  margin-top: 5%;
+
+  border: 2px solid rgba(0, 0, 0, 0.75);
+  border-radius: 2%;
+
+
+
+
+}
+
+.landing-error-text {
+  margin-top: 2%;
+  font-size: 125%;
+  text-align: center;
+  color: rgba(0, 0, 0, 0.75);
+}
+
+.no-unassigned {
+  text-align: center;
+}
+
+.button-group-graphs{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+  height: 20vh;
+}
+.product-details-graph-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 100%;
+
+}
+.product-details-graph-container > h1 {
+  width: 100%;
+  text-align: center;
+}
+
+.full-page {
+  height: 90vh;
+  width: 100vw;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.graph-content-container {
+  height: 90%;
+  width: 90%;
+  background-color: black;
+  border: 1px solid black;
+  border-radius: 1% / 2%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  
+}
+.graph-background > h2 {
+  margin: 1%;
+}
+
+.graph-background {
+  background-color: white;
+  width: 90%;
+  height: 90%;
+  flex-direction: column;
+  justify-content: flex-start;
+  display: flex;
+  align-items: center;
+
+}
+.navigation-buttons {
+  display: flex;
+  flex-direction: row;
+  column-gap: 5%;
+  justify-content: space-evenly;
 }

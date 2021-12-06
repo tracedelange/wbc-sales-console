@@ -11,11 +11,10 @@ const ProductCreationPage = () => {
 
     const handleNewProductSubmit = (e) => {
         e.preventDefault()
-        console.log(newProduct)
+
         createNewProduct(newProduct)
         .then(data => {
             if (data) {
-                console.log(data)
                 navigate(`/products/${data.id}`)
             }
         })

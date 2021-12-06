@@ -20,17 +20,17 @@ const DistributorsProductManagement = () => {
 
     useDispatchDistributors()
     useDispatchProducts()
-    
+
     const handleClose = () => {
         setProductAssignmentOpen(false)
         setSelectedItem({})
     }
-    
+
     const handleItemClick = (e, data) => {
         setSelectedItem(data)
         setProductAssignmentOpen(true)
     }
-    
+
     const distributorData = useSelector(state => state.distributors)
 
 
@@ -41,13 +41,13 @@ const DistributorsProductManagement = () => {
                 return (<li
                     key={item.id}
                     className='unassigned-product-list-item'
-                    onClick={(e)=> handleItemClick(e, item)}
-    
+                    onClick={(e) => handleItemClick(e, item)}
+
                 >
                     {item.name}
                 </li>)
             }))
-    
+
             setTimeout(() => { setReady(true) }, 1000)
         }
     }, [distributorData])
@@ -58,14 +58,19 @@ const DistributorsProductManagement = () => {
 
             {ready ?
                 <div className='distributer-product-container' >
-                    <div className='distributer-product-container-sub-container'>
-
-                    </div>
+                    {/* <div className='distributer-product-container-sub-container'></div> */}
                     <ProductAssignmentDialog selectedItem={selectedItem} open={productAssignmentOpen} handleClose={handleClose} />
                     <div className='distributer-product-container-sub-container'>
                         <h2>Unassigned Products:</h2>
                         <ul className='unassigned-product-list'>
-                            {unassignedProductArray}
+
+                            {unassignedProductArray.length > 0 ?
+                                unassignedProductArray
+                                :
+                                <div className='no-unassigned'>
+                                    No products to assign!
+                                </div>
+                            }
                         </ul>
 
                     </div>

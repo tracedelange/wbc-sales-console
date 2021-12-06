@@ -11,6 +11,7 @@ function App() {
 
 
   const userData = useSelector(state => state.session)
+  const [error, setError] = useState('')
 
   const dispatch = useDispatch()
 
@@ -21,7 +22,8 @@ function App() {
     let userToken = localStorage.getItem('jwt')
 
     if (userToken) {
-      console.log('user has token. Verify if user is actually logged in.')
+      // console.log('user has token. Verify if user is actually logged in.')
+
       getUserInfo()
         .then((data) => {
           if (data) {
@@ -30,6 +32,13 @@ function App() {
             console.log('Invalid token, user is not verified')
           }
         })
+        .catch( (e) => {
+          console.log(e)
+          setError('Error: Fetch failed to connect to server.')
+        })
+
+
+
     } else {
       console.log('user not logged in.')
     }
@@ -42,7 +51,7 @@ function App() {
       {userData.username ?
         <RouteContainer />
         :
-        <LandingPage />
+        <LandingPage error={error} />
       }
     </>
 
