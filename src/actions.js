@@ -39,7 +39,7 @@ export const useDispatchDistributors = () => {
 
     const dispatch = useDispatch()
     useEffect(() => {
-        console.log('distributor state refreshed')
+        // console.log('distributor state refreshed')
         getDistributors()
             .then(data => {
                 if (data) {

@@ -8,6 +8,7 @@ import DistributerProductMapSettings from './DistributerProductMapSettings'
 import SettingsIcon from '@mui/icons-material/Settings';
 import ProductNumbersCard from './ProductNumbersCard'
 import ProductGraphContainer from './ProductGraphContainer'
+import ProductAccountsContainer from './ProductAccountsContainer'
 
 const ProductDetailsPage = () => {
 

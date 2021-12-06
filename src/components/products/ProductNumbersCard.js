@@ -7,21 +7,15 @@ const ProductNumbersCard = () => {
 
     const product = useSelector(state => state.products.selectedProduct)
 
-    console.log(product)
 
     return (
         <>
             <div className='product-numbers-card'>
-                <h1>Product  at a Glance</h1>
+                <h1>Product at a Glance</h1>
                 <Divider flexItem />
                 <div className='number-card'>
                     {product.month_order_count}
-                    {product.month_order_count === 1 ? " order this month" : " orders this month"}
-                </div>
-                <Divider flexItem />
-                <div className='number-card'>
-                    {product.six_month_order_count}
-                    {product.six_month_order_count === 1 ? " order over the past six months" : " orders in the last six months"}
+                    {product.month_order_count === 1 ? " order in the last 30 days" : " orders in the last 30 days"}
                 </div>
                 <Divider flexItem />
                 <div className='number-card'>
@@ -34,6 +28,10 @@ const ProductNumbersCard = () => {
                     {product.order_count === 1 ? " order all time" : " orders all time"}
                 </div>
                 <Divider flexItem />
+                <div className='number-card'>
+                    {product.order_percentage_of_total}% of all orders
+                </div>
+
             </div>
         </>
     )

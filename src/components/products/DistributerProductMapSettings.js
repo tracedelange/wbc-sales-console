@@ -13,17 +13,15 @@ const DistributerProductMapSettings = () => {
         if (product.distributer_products.length < 0) {
             return <MappingEntry key={item.id} distributor={item} product={null} />
         } else {
-            let foundProduct = product.distributer_products.find(subitem => subitem.distributer_id === item.id)
-
-            if (foundProduct) {
-                return <MappingEntry key={item.id} distributor={item} foundProduct={foundProduct} />
+            let foundProducts = product.distributer_products.filter(subitem => subitem.distributer_id === item.id)
+            if (foundProducts.length > 0) {
+                return <MappingEntry key={item.id} distributor={item} foundProducts={foundProducts} />
             } else {
-                return <MappingEntry key={item.id} distributor={item} product={null} />
+                return <MappingEntry key={item.id} distributor={item} product={[]} />
             }
         }
 
     })
-
 
 
     return (
