@@ -4,6 +4,8 @@ import { submitReport } from '../../requests'
 import { Button } from '@mui/material'
 import ReportsForm from './ReportsForm'
 import { useDispatchDistributors } from '../../actions'
+import { useDispatch } from 'react-redux'
+
 
 
 
@@ -16,6 +18,7 @@ const ReportsLanding = () => {
     const [distributor, setDistributor] = useState(1)
     const [submitted, setSubmitted] = useState(false)
     const [successMessage, setSuccessMessage] = useState('')
+    const dispatch = useDispatch()
 
 
     useDispatchDistributors()
@@ -23,19 +26,19 @@ const ReportsLanding = () => {
 
     const handleDistributorChange = (e, newValue) => {
 
-        console.log(newValue)
         setSelectedDistributor(newValue)
 
     }
 
     const handleSubmitReport = (e) => {
+        dispatch({type: 'SET_LOADING_LOCK', payload: true})
         setSubmitted(true)
         submitReport(selectedFile, selectedDistributor)
-            .then(data => {
-                if (data) {
-                    console.log(data)
-                    setSubmitted(false)
-                    if (data.processing_stats) {
+        .then(data => {
+            if (data) {
+                setSubmitted(false)
+                if (data.processing_stats) {
+                        dispatch({type: 'SET_LOADING_LOCK', payload: false})
                         setSuccessMessage('Report successfully uploaded.')
                     } else {
                         setSuccessMessage('Looks like something went wrong.')

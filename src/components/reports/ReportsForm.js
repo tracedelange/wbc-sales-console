@@ -5,6 +5,7 @@ import ToggleButton from '@mui/material/ToggleButton';
 import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
 import Box from '@mui/material/Box';
 import LinearProgress from '@mui/material/LinearProgress';
+import AwaitResponseBackdrop from '../distributors/AwaitResponseBackdrop';
 
 
 const ReportsForm = ({ successMessage, handleSelectedFile, selectedDistributor, handleDistributorChange, handleSubmitReport, submitted }) => {
@@ -47,10 +48,9 @@ const ReportsForm = ({ successMessage, handleSelectedFile, selectedDistributor, 
                 </ToggleButtonGroup>
                 {/* <input type='number' value={selectedDistributor} onChange={handleDistributorChange} /> */}
                 <Button variant='contained' sx={{ fontSize: '1.5vmin' }} onClick={handleSubmitReport} >Submit Report</Button>
+                <AwaitResponseBackdrop />
                 {submitted ?
-                    <Box sx={{ width: "100%" }}>
-                        <LinearProgress />
-                    </Box>
+                    null
                     :
                     <div>
                         {successMessage}
