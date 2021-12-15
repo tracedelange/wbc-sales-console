@@ -128,6 +128,15 @@ export const getAccountsByPage = async (page) => {
     return data
 }
 
+export const getAccountsByOrderPage = async (page) => {
+    let token = localStorage.getItem('jwt')
+    const method = "GET"
+    const headers = { "Content-Type": "application/json", "Authorization": `Bearer ${token}` }
+    const response = await fetch(`${baseURL}/account_query/order_page?page=${page}`, { method: method, headers: headers })
+    const data = await response.json()
+    return data
+}
+
 export const getAccountsBySearch = async (query) => {
     let token = localStorage.getItem('jwt')
     const method = "GET"

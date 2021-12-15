@@ -3,7 +3,8 @@ const initialState = {
     scrollPage: 0,
     selectedAccount: null,
     accountSearchLock: false,
-    searching: false
+    searching: false,
+    filterType: 'alphabetical'
 }
 
 const accountsReducer = (state=initialState, action) => {
@@ -39,6 +40,11 @@ const accountsReducer = (state=initialState, action) => {
                 ...state,
                 selectedAccount: action.payload
             };
+        case "SET_ACCOUNT_FILTER_TYPE":
+            return {
+                ...state,
+                filterType: action.payload
+            }
         default:
             return state;
     }

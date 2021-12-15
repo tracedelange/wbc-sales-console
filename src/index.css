@@ -677,7 +677,7 @@
 
 .account-search-results {
   border: 1px solid rgba(0, 0, 0, 0.25);
-  height: 90%;
+  height: 80%;
   list-style: none;
   padding: 0;
   overflow-y: scroll;
@@ -790,4 +790,14 @@
 }
 .post-submit-text {
   font-size: 2vmin;
+}
+
+.account-sort-filter{
+  /* border: 1px solid rgba(0, 0, 0, 0.25); */
+  margin-top: 2%;
+  height: 6%;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
 }

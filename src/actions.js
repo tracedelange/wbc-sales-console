@@ -1,4 +1,4 @@
-import { getDistributors, getProducts, getSpecificProduct, getAccountsByPage } from "./requests"
+import { getDistributors, getProducts, getSpecificProduct, getAccountsByPage, getAccountsByOrderPage } from "./requests"
 import { useDispatch, useSelector } from "react-redux"
 import { useEffect } from 'react'
 
@@ -53,21 +53,36 @@ export const useDispatchAccounts = () => {
 
     const dispatch = useDispatch()
     const page = useSelector(state => state.accounts.scrollPage)
+    const filterType = useSelector(state => state.accounts.filterType)
 
     useEffect(() => {
-        getAccountsByPage(page)
-        .then(data => {
-            if (data) {
-                if (page === 0){
-                    dispatch({ type: "SET_ACCOUNTS", payload: data})
-                } else {
-                    dispatch({ type: "APPEND_ACCOUNTS", payload: data})
-                    dispatch({ type: "SET_LOADING_LOCK", payload: false})
+        if (filterType === 'alphabetical') {
+            getAccountsByPage(page)
+            .then(data => {
+                if (data) {
+                    if (page === 0){
+                        dispatch({ type: "SET_ACCOUNTS", payload: data})
+                    } else {
+                        dispatch({ type: "APPEND_ACCOUNTS", payload: data})
+                        dispatch({ type: "SET_LOADING_LOCK", payload: false})
+                    }
                 }
-            }
-        })
+            })
+        } else if (filterType === 'orders') {
+            getAccountsByOrderPage(page)
+            .then(data => {
+                if (data) {
+                    if (page === 0){
+                        dispatch({ type: "SET_ACCOUNTS", payload: data})
+                    } else {
+                        dispatch({ type: "APPEND_ACCOUNTS", payload: data})
+                        dispatch({ type: "SET_LOADING_LOCK", payload: false})
+                    }
+                }
+            })
+        }
 
-    }, [page])
+    }, [page, filterType])
 }
 
 

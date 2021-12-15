@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import AwaitResponseBackdrop from '../distributors/AwaitResponseBackdrop'
 import { v4 as uuid_v4 } from "uuid";
@@ -10,6 +10,7 @@ const AccountList = () => {
     const accountSearchLock = useSelector(state => state.accounts.accountSearchLock)
     const searching = useSelector(state => state.accounts.searching)
     const selectedAccount = useSelector(state => state.accounts.selectedAccount)
+    // const filterType = useSelector(state => state.accounts.filterType)
 
     const dispatch = useDispatch()
 
@@ -40,6 +41,8 @@ const AccountList = () => {
             }
         }
     }
+
+
 
 
     return (
