@@ -12,6 +12,8 @@ import ProductCreationPage from '../products/ProductCreationPage'
 import ProductManagementPage from '../products/ProductManagementPage'
 import ProductOrdersGraphPage from '../products/charts/ProductOrdersGraphPage'
 import ProductAccountsGraphPage from '../products/charts/ProductAccountsGraphPage'
+import AccountEdit from '../accounts/AccountEdit'
+import AccountDetails from '../accounts/AccountDetails'
 
 const RouteContainer = () => {
     return (
@@ -25,6 +27,8 @@ const RouteContainer = () => {
           <Route path='/products/:id/orders' element={ <ProductOrdersGraphPage /> } />
           <Route path='/products/:id/accounts' element={ <ProductAccountsGraphPage /> } />
           <Route path='/products/new' element={ <ProductCreationPage /> } />
+          <Route path='/accounts/:id/manage' element={ <AccountEdit /> } />
+          <Route path='/accounts/:id/details' element={ <AccountDetails /> } />
           <Route path='/accounts' element={ <AccountsLanding /> } />
           <Route path='/distributors' element={ <DistributorsLanding /> } />
           <Route path='/distributors/:id/manage' element={ <DistributorsProductManagement /> } />

@@ -145,4 +145,13 @@ export const getAccountDetails = async (accountID) => {
     const data = await response.json()
     return data
 }
+export const submitAccountChanges = async (input, accountID) => {
+    let token = localStorage.getItem('jwt')
+    const body = JSON.stringify(input)
+    const method = "PATCH"
+    const headers = { "Content-Type": "application/json", "Authorization": `Bearer ${token}` }
+    const response = await fetch(`${baseURL}/accounts/${accountID}`, { method: method, headers: headers, body: body })
+    const data = await response.json()
+    return data
+}
 

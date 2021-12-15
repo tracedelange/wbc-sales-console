@@ -3,6 +3,8 @@ import { useSelector } from 'react-redux'
 import { useState, useEffect } from 'react'
 import { getAccountDetails } from '../../requests'
 import { Button, Divider } from '@mui/material'
+import { CircularProgress } from '@mui/material'
+import { useNavigate } from 'react-router-dom'
 
 const AccountHighlight = () => {
 
@@ -10,21 +12,32 @@ const AccountHighlight = () => {
 
     const [selectedAccountData, setSelectedAccountData] = useState({})
     const [dataReady, setDataReady] = useState(false)
+    
+    const navigate = useNavigate()
 
     useEffect(() => {
         if (selectedAccount) {
+            setDataReady(false)
             getAccountDetails(selectedAccount)
                 .then(data => {
                     if (data) {
                         setSelectedAccountData(data)
-                        setDataReady(true)
+                        setTimeout(()=>{
+                            setDataReady(true)
+                        }, 750)
                     }
                 })
         }
     }, [selectedAccount])
 
 
-    console.log(selectedAccountData)
+
+    const handleNavigation = (e) => {
+
+        navigate(`/accounts/${selectedAccount}/${e.target.id}`)
+    }
+
+
     return (
         <div className='account-highlight'>
             {dataReady ?
@@ -55,16 +68,23 @@ const AccountHighlight = () => {
 
                     </div>
                     <div className='account-button-container'>
-                        <Button variant='contained'>View Account Orders</Button>
-                        <Button variant='contained'>Edit Account Information</Button>
+                        <Button onClick={handleNavigation} id='details' variant='contained'>View Account Orders</Button>
+                        <Button onClick={handleNavigation} id='manage' variant='contained'>Edit Account Information</Button>
                     </div>
 
                 </>
                 :
 
+                selectedAccount ? 
+                <CircularProgress size='10vmin' sx={{position: 'absolute', top: '40vh'}}/>
+                :
                 <h2>
-                    Selected an Account to view details
+                    Select an account to view
                 </h2>
+
+
+
+
 
             }
         </div>
