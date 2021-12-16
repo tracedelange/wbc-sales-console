@@ -1,4 +1,4 @@
-import { getDistributors, getProducts, getSpecificProduct, getAccountsByPage, getAccountsByOrderPage } from "./requests"
+import { getDistributors, getProducts, getSpecificProduct, getAccountsByPage, getAccountsByOrderPage, getWarnings, getAccountsByNeedDisplayName } from "./requests"
 import { useDispatch, useSelector } from "react-redux"
 import { useEffect } from 'react'
 
@@ -48,6 +48,18 @@ export const useDispatchDistributors = () => {
     }, [])
 }
 
+export const useDispatchWarnings = () => {
+    const dispatch = useDispatch()
+    useEffect(()=>{
+        getWarnings()
+        .then(data => {
+            if (data) {
+                dispatch({type: 'SET_WARNINGS', payload: data})
+            }
+        })
+    },[])
+}
+ 
 
 export const useDispatchAccounts = () => {
 
@@ -70,6 +82,18 @@ export const useDispatchAccounts = () => {
             })
         } else if (filterType === 'orders') {
             getAccountsByOrderPage(page)
+            .then(data => {
+                if (data) {
+                    if (page === 0){
+                        dispatch({ type: "SET_ACCOUNTS", payload: data})
+                    } else {
+                        dispatch({ type: "APPEND_ACCOUNTS", payload: data})
+                        dispatch({ type: "SET_LOADING_LOCK", payload: false})
+                    }
+                }
+            })
+        } else if (filterType === 'display_name') {
+            getAccountsByNeedDisplayName(page)
             .then(data => {
                 if (data) {
                     if (page === 0){

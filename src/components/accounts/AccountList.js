@@ -18,6 +18,8 @@ const AccountList = () => {
         dispatch({type: "SET_SELECTED_ACCOUNT", payload: e.target.id})
     }
 
+    console.log(displayAccounts)
+
     const accountArray = displayAccounts.map((item) => {
 
         return (

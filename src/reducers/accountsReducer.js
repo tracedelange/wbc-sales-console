@@ -45,6 +45,18 @@ const accountsReducer = (state=initialState, action) => {
                 ...state,
                 filterType: action.payload
             }
+        case "ACCOUNTS_WITHOUT_DISPLAY_NAMES":
+            let filteredAccounts = state.displayAccounts.filter(item => item.display_name ? null : item)
+            return {
+                ...state,
+                displayAccounts: [...filteredAccounts]
+            }
+        case "REMOVE_ACCOUNT_FROM_FILTERED_LIST":
+            let existingAccounts = state.displayAccounts.filter(item => item.id === action.payload ? null : item) 
+            return {
+                ...state,
+                displayAccounts: [...existingAccounts]
+            }
         default:
             return state;
     }

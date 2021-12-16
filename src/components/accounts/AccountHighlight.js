@@ -1,8 +1,8 @@
 import React from 'react'
-import { useSelector } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
 import { useState, useEffect } from 'react'
-import { getAccountDetails } from '../../requests'
-import { Button, Divider } from '@mui/material'
+import { getAccountDetails, submitAccountChanges } from '../../requests'
+import { Button, Divider, TextField } from '@mui/material'
 import { CircularProgress } from '@mui/material'
 import { useNavigate } from 'react-router-dom'
 
@@ -10,19 +10,25 @@ const AccountHighlight = () => {
 
     const selectedAccount = useSelector(state => state.accounts.selectedAccount)
 
+    const [displayNameQuickAdd, setDisplayNameQuickAdd] = useState('')
+    const [displayNameQuickAddActive, setDisplayNameQuickAddActive] = useState(false)
     const [selectedAccountData, setSelectedAccountData] = useState({})
     const [dataReady, setDataReady] = useState(false)
-    
+
     const navigate = useNavigate()
+
+    const dispatch = useDispatch()
+
 
     useEffect(() => {
         if (selectedAccount) {
             setDataReady(false)
+            setDisplayNameQuickAddActive(false)
             getAccountDetails(selectedAccount)
                 .then(data => {
                     if (data) {
                         setSelectedAccountData(data)
-                        setTimeout(()=>{
+                        setTimeout(() => {
                             setDataReady(true)
                         }, 750)
                     }
@@ -30,7 +36,23 @@ const AccountHighlight = () => {
         }
     }, [selectedAccount])
 
-
+    const handleQuickAddChange = (e) => {
+        setDisplayNameQuickAdd(e.target.value)
+    }
+    
+    const handleQuickAddSubmit = (e) => {
+        e.preventDefault()
+        submitAccountChanges({display_name: displayNameQuickAdd}, selectedAccount)
+        .then(data => {
+            if (data) {
+                console.log(data)
+                setDisplayNameQuickAddActive(false)
+                setDisplayNameQuickAdd('')
+                setSelectedAccountData(data)
+                dispatch({type: 'REMOVE_ACCOUNT_FROM_FILTERED_LIST', payload: selectedAccount})
+            }
+        })
+    }
 
     const handleNavigation = (e) => {
 
@@ -43,7 +65,22 @@ const AccountHighlight = () => {
             {dataReady ?
                 <>
                     <h2 className='account-title'>
-                        {selectedAccountData.display_name ? selectedAccountData.display_name : selectedAccountData.account_name}
+                        {selectedAccountData.display_name ?
+                            selectedAccountData.display_name
+                            :
+                            <div className='highlight-quick-display-assignment-container'>
+                                {displayNameQuickAddActive ?
+                                    <form onSubmit={handleQuickAddSubmit} className='quick-add-form'>
+                                        <TextField autoFocus value={displayNameQuickAdd} onChange={handleQuickAddChange} fullWidth label='Display Name' />
+                                        <Button type='submit' variant='contained'>Submit</Button>
+                                    </form>
+                                    :
+                                    <Button onClick={() => { setDisplayNameQuickAddActive(true) }} variant='contained'>Add Display Name</Button>
+                                }
+                                {selectedAccountData.account_name}
+                            </div>
+                        }
+
                     </h2>
                     <Divider flexItem />
                     <h4>{selectedAccountData.on_premise ? "ON PREMISE" : "OFF PREMISE"} Vendor at {selectedAccountData.address}, {selectedAccountData.city}, {selectedAccountData.state}</h4>
@@ -54,7 +91,7 @@ const AccountHighlight = () => {
                                 {selectedAccountData.month_order_count}
                             </h1>
                             <h3>
-                            Orders this month
+                                Orders this month
                             </h3>
                         </div>
                         <div>
@@ -75,12 +112,12 @@ const AccountHighlight = () => {
                 </>
                 :
 
-                selectedAccount ? 
-                <CircularProgress size='10vmin' sx={{position: 'absolute', top: '40vh'}}/>
-                :
-                <h2>
-                    Select an account to view
-                </h2>
+                selectedAccount ?
+                    <CircularProgress size='10vmin' sx={{ position: 'absolute', top: '40vh' }} />
+                    :
+                    <h2>
+                        Select an account to view
+                    </h2>
 
 
 

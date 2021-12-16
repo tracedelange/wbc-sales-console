@@ -136,7 +136,23 @@ export const getAccountsByOrderPage = async (page) => {
     const data = await response.json()
     return data
 }
+export const getAccountsByNeedDisplayName = async (page) => {
+    let token = localStorage.getItem('jwt')
+    const method = "GET"
+    const headers = { "Content-Type": "application/json", "Authorization": `Bearer ${token}` }
+    const response = await fetch(`${baseURL}/account_query/need_display?page=${page}`, { method: method, headers: headers })
+    const data = await response.json()
+    return data
+}
 
+export const getWarnings = async () => {
+    let token = localStorage.getItem('jwt')
+    const method = "GET"
+    const headers = { "Content-Type": "application/json", "Authorization": `Bearer ${token}` }
+    const response = await fetch(`${baseURL}/warnings`, { method: method, headers: headers })
+    const data = await response.json()
+    return data
+}
 export const getAccountsBySearch = async (query) => {
     let token = localStorage.getItem('jwt')
     const method = "GET"
