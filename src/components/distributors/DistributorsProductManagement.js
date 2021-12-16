@@ -7,6 +7,7 @@ import { CircularProgress } from '@mui/material'
 import ProductAssignmentDialog from './ProductAssignmentDialog'
 import { Button } from '@mui/material';
 import { useDispatchProducts, useDispatchDistributors } from '../../actions';
+import AwaitResponseBackdrop from './AwaitResponseBackdrop';
 
 const DistributorsProductManagement = () => {
 
@@ -59,6 +60,7 @@ const DistributorsProductManagement = () => {
             {ready ?
                 <div className='distributer-product-container' >
                     {/* <div className='distributer-product-container-sub-container'></div> */}
+                    <AwaitResponseBackdrop />
                     <ProductAssignmentDialog selectedItem={selectedItem} open={productAssignmentOpen} handleClose={handleClose} />
                     <div className='distributer-product-container-sub-container'>
                         <h2>Unassigned Products:</h2>

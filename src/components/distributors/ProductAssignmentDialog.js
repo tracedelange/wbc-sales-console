@@ -10,6 +10,7 @@ import ProductAssignmentDropDown from './ProductAssignmentDropDown';
 import { updateDistributerProduct } from '../../requests';
 import { useDispatch } from 'react-redux';
 import { useDispatchDistributors } from '../../actions';
+import AwaitResponseBackdrop from './AwaitResponseBackdrop';
 
 export default function AlertDialog({ open, handleClose, selectedItem }) {
 
@@ -40,12 +41,14 @@ export default function AlertDialog({ open, handleClose, selectedItem }) {
 
 
     const handleAssignmentConfirmation = () => {
+        handleClose()
+        dispatch({type: 'SET_LOADING_LOCK', payload: true})
         updateDistributerProduct(selectedItem.id, chosenProduct.id)
         .then(data => {
             if (data) {
                 dispatch({type: 'REMOVE_UNASSIGNED_PRODUCT', payload: data})
+                dispatch({type: 'SET_LOADING_LOCK', payload: false})
                 setChosenProduct({})
-                handleClose()
             }
         })
 
@@ -53,10 +56,12 @@ export default function AlertDialog({ open, handleClose, selectedItem }) {
 
     return (
 
+
         <Dialog
             open={open}
             onClose={handleClose}
         >
+            
             <DialogTitle id="alert-dialog-title">
                 {"Product Assignment"}
             </DialogTitle>
@@ -89,6 +94,7 @@ export default function AlertDialog({ open, handleClose, selectedItem }) {
                 </Button>
             </DialogActions>
         </Dialog>
+
 
     );
 }

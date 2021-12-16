@@ -119,3 +119,64 @@ export const getGraphData = async (product_id) => {
     return data
 }
 
+export const getAccountsByPage = async (page) => {
+    let token = localStorage.getItem('jwt')
+    const method = "GET"
+    const headers = { "Content-Type": "application/json", "Authorization": `Bearer ${token}` }
+    const response = await fetch(`${baseURL}/account_query/alpha_page?page=${page}`, { method: method, headers: headers })
+    const data = await response.json()
+    return data
+}
+
+export const getAccountsByOrderPage = async (page) => {
+    let token = localStorage.getItem('jwt')
+    const method = "GET"
+    const headers = { "Content-Type": "application/json", "Authorization": `Bearer ${token}` }
+    const response = await fetch(`${baseURL}/account_query/order_page?page=${page}`, { method: method, headers: headers })
+    const data = await response.json()
+    return data
+}
+export const getAccountsByNeedDisplayName = async (page) => {
+    let token = localStorage.getItem('jwt')
+    const method = "GET"
+    const headers = { "Content-Type": "application/json", "Authorization": `Bearer ${token}` }
+    const response = await fetch(`${baseURL}/account_query/need_display?page=${page}`, { method: method, headers: headers })
+    const data = await response.json()
+    return data
+}
+
+export const getWarnings = async () => {
+    let token = localStorage.getItem('jwt')
+    const method = "GET"
+    const headers = { "Content-Type": "application/json", "Authorization": `Bearer ${token}` }
+    const response = await fetch(`${baseURL}/warnings`, { method: method, headers: headers })
+    const data = await response.json()
+    return data
+}
+export const getAccountsBySearch = async (query) => {
+    let token = localStorage.getItem('jwt')
+    const method = "GET"
+    const headers = { "Content-Type": "application/json", "Authorization": `Bearer ${token}` }
+    const response = await fetch(`${baseURL}/account_query/name?name=${query}`, { method: method, headers: headers })
+    const data = await response.json()
+    return data
+}
+
+export const getAccountDetails = async (accountID) => {
+    let token = localStorage.getItem('jwt')
+    const method = "GET"
+    const headers = { "Content-Type": "application/json", "Authorization": `Bearer ${token}` }
+    const response = await fetch(`${baseURL}/accounts/${accountID}`, { method: method, headers: headers })
+    const data = await response.json()
+    return data
+}
+export const submitAccountChanges = async (input, accountID) => {
+    let token = localStorage.getItem('jwt')
+    const body = JSON.stringify(input)
+    const method = "PATCH"
+    const headers = { "Content-Type": "application/json", "Authorization": `Bearer ${token}` }
+    const response = await fetch(`${baseURL}/accounts/${accountID}`, { method: method, headers: headers, body: body })
+    const data = await response.json()
+    return data
+}
+
