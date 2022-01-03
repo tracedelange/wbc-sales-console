@@ -59,6 +59,14 @@ const AccountEdit = () => {
         })
     }
 
+    const handlePremiseButtonClick = (e) => {
+        setChangedAccount({
+            ...changedAccount,
+            'on_premise': !changedAccount.on_premise
+        })
+
+    }
+
     const handleInputChange = (e) => {
         setChangedAccount({
             ...changedAccount,
@@ -82,6 +90,8 @@ const AccountEdit = () => {
 
     }, [changedAccount])
 
+
+    console.log(changedAccount)
 
     return (
 
@@ -107,11 +117,12 @@ const AccountEdit = () => {
                         <TextField type='float' onChange={handleInputChange} id='latitude' inputProps={{ sx: { fontSize: '2vmin' } }} sx={{ width: '30%' }} value={changedAccount.latitude} fullWidth label='Latitude' />
                         <TextField type='float' onChange={handleInputChange} id='longitude' inputProps={{ sx: { fontSize: '2vmin' } }} sx={{ width: '30%' }} value={changedAccount.longitude} fullWidth label='Longitude' />
                     </Box>
-                    <Box sx={{ width: '85%', display: 'flex', flexDirection: 'row', justifyContent: 'center' }}>
+                    <Box sx={{ width: '100%', display: 'flex', flexDirection: 'row', justifyContent: 'center', columnGap: '10px' }}>
                         <ToolTip title={<p className='tool-tip'>If set to true, account will be hidden from view on the Sales Map.</p>}>
                             <InfoIcon sx={{ color: 'action.active', mr: 1, my: 0.5 }} />
                         </ToolTip>
                         <Button onClick={handleButtonClick} id='hidden' variant='contained'>{"Hidden: " + changedAccount.hidden}</Button>
+                        <Button onClick={handlePremiseButtonClick} id='premise' variant='contained'>{"On Premise: " + changedAccount.on_premise}</Button>
                     </Box>
 
                     <Box sx={{ width: '45%', display: 'flex', flexDirection: 'row', justifyContent: 'space-evenly' }}>
