@@ -170,6 +170,17 @@ export const getAccountDetails = async (accountID) => {
     const data = await response.json()
     return data
 }
+
+export const getAccountOrders = async (accountID) => {
+    let token = localStorage.getItem('jwt')
+    const method = "GET"
+    const headers = { "Content-Type": "application/json", "Authorization": `Bearer ${token}` }
+    const response = await fetch(`${baseURL}/accounts/${accountID}/orders`, { method: method, headers: headers })
+    const data = await response.json()
+    return data
+}
+
+
 export const submitAccountChanges = async (input, accountID) => {
     let token = localStorage.getItem('jwt')
     const body = JSON.stringify(input)

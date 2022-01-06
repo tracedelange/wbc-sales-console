@@ -4,7 +4,8 @@ const initialState = {
     selectedAccount: null,
     accountSearchLock: false,
     searching: false,
-    filterType: 'alphabetical'
+    filterType: 'alphabetical',
+    accountOrders: []
 }
 
 const accountsReducer = (state=initialState, action) => {
@@ -56,6 +57,11 @@ const accountsReducer = (state=initialState, action) => {
             return {
                 ...state,
                 displayAccounts: [...existingAccounts]
+            }
+        case "SET_ACCOUNT_ORDERS":
+            return {
+                ...state,
+                accountOrders: [...action.payload]
             }
         default:
             return state;

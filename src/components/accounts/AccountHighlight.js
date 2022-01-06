@@ -119,10 +119,6 @@ const AccountHighlight = () => {
                         Select an account to view
                     </h2>
 
-
-
-
-
             }
         </div>
     )

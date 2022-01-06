@@ -1,4 +1,4 @@
-import { getDistributors, getProducts, getSpecificProduct, getAccountsByPage, getAccountsByOrderPage, getWarnings, getAccountsByNeedDisplayName } from "./requests"
+import { getDistributors, getProducts, getSpecificProduct, getAccountsByPage, getAccountsByOrderPage, getWarnings, getAccountsByNeedDisplayName, getAccountOrders } from "./requests"
 import { useDispatch, useSelector } from "react-redux"
 import { useEffect } from 'react'
 
@@ -15,6 +15,19 @@ export const useDispatchProducts = () => {
     }, [])
 }
 
+
+export const useDispatchAccountOrders = (accountId) => {
+    const dispatch = useDispatch()
+    useEffect(()=> {
+        console.log('getting account orders')
+        getAccountOrders(accountId)
+        .then(data => {
+            if (data) {
+                dispatch({type: 'SET_ACCOUNT_ORDERS', payload: data})
+            }
+        })
+    },[])
+}
 
 //This is a good compromise. Inside of the useEffect, we are checking to see if a selected product already exists. This keeps us from making excessive calls
 // to the back end.
