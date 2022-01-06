@@ -37,7 +37,8 @@ const ReportsLanding = () => {
         .then(data => {
             if (data) {
                 setSubmitted(false)
-                if (data.processing_stats) {
+                console.log(data)
+                if (data.id) {
                         dispatch({type: 'SET_LOADING_LOCK', payload: false})
                         setSuccessMessage('Report successfully uploaded.')
                     } else {
